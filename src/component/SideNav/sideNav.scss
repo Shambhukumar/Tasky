@@ -1,5 +1,6 @@
 .SideNav {
-    height: 100vh;
+    min-height: 100vh;
+    max-height: 100%;
     width: 250px;
     background-color: rgb(242, 243, 245);
     display: flex;
@@ -7,6 +8,7 @@
     align-items: center;
 
     &-logo {
+        cursor: pointer;
         width: 90%;
         background-color: #fff;
         border-radius: 10px;
