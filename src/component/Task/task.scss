@@ -1,24 +1,29 @@
-.Task{
+.Task {
     width: 60%;
+
     // background-color: gray;
-    &-head{
+    &-head {
         margin: 20px 20px;
-        &-taskText{
-           
+
+        &-taskText {
+
             margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            &-text{
+
+            &-text {
                 font-size: 2.5rem;
             }
 
-            &-icons{
+            &-icons {
                 width: 20%;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                &-search,&-notification{
+
+                &-search,
+                &-notification {
                     cursor: pointer;
                     display: flex;
                     align-items: center;
@@ -28,34 +33,130 @@
                     border-radius: 50%;
                     background-color: #f2f3f5;
                 }
-                img{
+
+                img {
                     width: 20px;
                 }
 
-                &-pic{
+                &-pic {
                     cursor: pointer;
-                    img{
+
+                    img {
                         width: 40px;
                         height: 40px;
                         object-fit: cover;
                         border-radius: 50%;
                     }
+
                     // padding: -10px;
                 }
             }
-            
+
         }
-        &-paragraph{
+
+        &-paragraph {
             width: 60%;
-            
+
             color: #b7b7b7;
-            &-btn{
+
+            &-btn {
                 padding: 3px 5px;
                 background-color: #f4f5f7;
                 color: #6176d7;
                 font-weight: 600;
             }
         }
-        
+
+    }
+
+    &-Drageble {
+        // height: 70vh;
+        max-height: 75vh;
+        overflow-y: overlay;
+        display: flex;
+        justify-content: space-evenly;
+        &-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            &-heading{
+                color: #2d2d2e;
+                font-size: 0.9rem;
+                font-weight: 600;
+                border-radius: 5px;
+                background-color: #f3f3f5;
+                width: 95%;
+                padding: 5px 10px;
+                margin: 0px 10px;
+                
+                display: flex;
+                justify-content: space-between;
+                &-count{
+                    border-radius: 5px;
+                    color: #ccc;
+                    font-size: 0.8rem;
+                    padding: 3px 7px;
+                    background-color: black;
+                }
+            }
+            &-container {
+                margin: 8px;
+
+                &-inn {
+                    padding: 4px;
+                    width: 250px;
+                    min-height: 500px;
+                    background-color: white !important;
+
+                    &-item {
+                       border-radius: 10px;
+                        background-color: white !important;
+                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                        // text-align: center;
+                       padding: 15px 10px;
+                       margin-bottom: 15px;
+
+                       &-head{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-bottom: 15px;
+                        &-emoji{
+                            padding: 4px;
+                            background-color: #f4f5f7;
+                            border-radius: 50%;
+                        }
+                        &-dots{
+                            display: flex;
+                            cursor: pointer;
+                            padding: 5px 0px;
+                            width: 15px;
+                            justify-content: space-between;
+                            span{
+                                width: 4px;
+                                height: 4px;
+                                background-color: #a3a3a3;
+                                border-radius: 50%;
+                            }
+                           
+                        }
+                       }
+                       &-text{
+                           font-size: 0.9rem;
+                           margin-bottom: 15px;
+                       }
+                       &-foot{
+                            &-time{
+                                color: white;
+                                border-radius: 4px;
+                                padding: 5px;
+                                background-color: #34a479;
+                                font-size: 0.8rem;
+                            }
+                       }
+                    }
+                }
+            }
+        }
     }
 }
