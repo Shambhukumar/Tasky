@@ -71,16 +71,19 @@
 
     &-Drageble {
         height: 570px;
-    //    width: inherit;
+        //    width: inherit;
         overflow-y: overlay;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
+
         &-column {
+
             display: flex;
             flex-direction: column;
             align-items: center;
-            &-heading{
+
+            &-heading {
                 color: #2d2d2e;
                 font-size: 0.9rem;
                 font-weight: 600;
@@ -89,10 +92,11 @@
                 width: 95%;
                 padding: 5px 10px;
                 margin: 0px 10px;
-                
+
                 display: flex;
                 justify-content: space-between;
-                &-count{
+
+                &-count {
                     border-radius: 5px;
                     color: #ccc;
                     font-size: 0.8rem;
@@ -100,69 +104,83 @@
                     background-color: black;
                 }
             }
+
             &-container {
                 margin: 8px;
+                width: 250px;
+                @media screen and (max-width: 1400px) {
+                    width: 200px;
+                }
+
 
                 &-inn {
                     padding: 4px;
-                    width: 250px;
-                    @media screen and (max-width: 1400px) {
-                        width: 200px;
-                      }
-                    // min-height: 500px;
-                    background-color: white !important;
+
+                   
+                    background-color: transparent !important;
+
+
 
                     &-item {
-                       border-radius: 10px;
+                        z-index: 99999;
+                        // display: flex;
+                        align-items: center;
+
+                        border-radius: 10px;
                         background-color: white !important;
                         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                         // text-align: center;
-                       padding: 15px 10px;
-                       margin-bottom: 15px;
-
-                       &-head{
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
+                        padding: 15px 10px;
                         margin-bottom: 15px;
-                        &-emoji{
-                            padding: 4px;
-                            background-color: #f4f5f7;
-                            border-radius: 50%;
-                        }
-                        &-dots{
+
+                        &-head {
                             display: flex;
-                            cursor: pointer;
-                            padding: 5px 0px;
-                            width: 15px;
+                            align-items: center;
                             justify-content: space-between;
-                            span{
-                                width: 4px;
-                                height: 4px;
-                                background-color: #a3a3a3;
+                            margin-bottom: 15px;
+
+                            &-emoji {
+                                padding: 4px;
+                                background-color: #f4f5f7;
                                 border-radius: 50%;
                             }
-                           
+
+                            &-dots {
+                                display: flex;
+                                cursor: pointer;
+                                padding: 5px 0px;
+                                width: 15px;
+                                justify-content: space-between;
+
+                                span {
+                                    width: 4px;
+                                    height: 4px;
+                                    background-color: #a3a3a3;
+                                    border-radius: 50%;
+                                }
+
+                            }
                         }
-                       }
-                       &-text{
-                           font-size: 0.9rem;
-                           margin-bottom: 15px;
-                       }
-                       &-foot{
-                            &-time{
+
+                        &-text {
+                            font-size: 0.9rem;
+                            margin-bottom: 15px;
+                        }
+
+                        &-foot {
+                            &-time {
                                 color: white;
                                 border-radius: 4px;
                                 padding: 5px;
                                 background-color: #34a479;
                                 font-size: 0.8rem;
                             }
-                       }
+                        }
                     }
                 }
             }
         }
     }
 
-  
+
 }

@@ -3,20 +3,20 @@ import "./task.scss";
 import Search from "../../Assets/Svg/Search.svg";
 import Notification from "../../Assets/Svg/Notification.svg";
 // import Pic1 from "../../Assets/Images/Pic1.jpg";
-import {SelectUser} from "../LoggedInUserSplice";
-import {updateColumnList, SelectColumnList} from "./taskSlice";
+import { SelectUser } from "../LoggedInUserSplice";
+import { updateColumnList, SelectColumnList } from "./taskSlice";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useSelector, useDispatch } from "react-redux";
-import {onDragEnd} from "./taskFunction";
-
+import { onDragEnd } from "./taskFunction";
 
 const Task = () => {
-  const ColumnsList = useSelector(SelectColumnList)
-  const Currentuser = useSelector(SelectUser)
-  console.log(ColumnsList)
+  const ColumnsList = useSelector(SelectColumnList);
+  const Currentuser = useSelector(SelectUser);
   const dispatch = useDispatch();
   const [columns, setColumns] = useState(ColumnsList);
- 
+
+  const placeholder = ["+", "+", "+"];
+
   return (
     <div className="Task">
       {/* {console.log(columns)} */}
@@ -43,7 +43,9 @@ const Task = () => {
       </div>
       <div className="Task-Drageble">
         <DragDropContext
-          onDragEnd={(result) => onDragEnd(result, columns, setColumns, dispatch, updateColumnList)}
+          onDragEnd={(result) =>
+            onDragEnd(result, columns, setColumns, dispatch, updateColumnList)
+          }
         >
           {Object.entries(columns).map(([columnId, column], index) => {
             return (
