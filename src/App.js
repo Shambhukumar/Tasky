@@ -1,14 +1,15 @@
 import React from 'react';
-import { Counter } from './features/counter/Counter';
 import './App.scss';
 import SideNav from './component/SideNav/SideNav';
 import Task from './component/Task/Task';
+import Chat from './component/Chat/Chat';
 
 const App = () => {
   return (
     <div className="App">
       <SideNav/>
       <Task/>
+      <Chat/>
     </div>
   );
 }
