@@ -3,165 +3,21 @@ import "./task.scss";
 import Search from "../../Assets/Svg/Search.svg";
 import Notification from "../../Assets/Svg/Notification.svg";
 import Pic1 from "../../Assets/Images/Pic1.jpg";
-import { v4 as uuid } from "uuid";
+import {updateColumnList, SelectColumnList} from "./taskSlice";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { useSelector, useDispatch } from "react-redux";
+import {onDragEnd} from "./taskFunction";
 
-const itemsFromBackend = [
-  {
-    id: uuid(),
-    content: {
-      emoji: "🤟",
-      text: "[Memoji]-Create Prototype Mobile for Get Notification in Principle",
-      date: "MAR 26",
-    },
-  },
-  {
-    id: uuid(),
-    content: {
-      emoji: "🥳",
-      text: "[OWW] - Draw & animate illustration for OWW 4th anniversary",
-      date: "MAR 30",
-    },
-  },
-  {
-    id: uuid(),
-    content: {
-      emoji: "🎮",
-      text: "[Metaco] - Create draft desgn for User Journey earning coin on Apps",
-      date: "Apr 1",
-    },
-  },
-];
 
-const itemsFromBackend2 = [
-    {
-      id: uuid(),
-      content: {
-        emoji: "🤟",
-        text: "[Lux] - Design Lux Pet Shop Product Page Responsive Website",
-        date: "MAR 29",
-      },
-    },
-    {
-      id: uuid(),
-      content: {
-        emoji: "🔥",
-        text: "[OWW] - Learn SVGator for Create OWW Animation Part 2",
-        date: "MAR 26",
-      },
-    },
-  ];
-
-  const itemsFromBackend3 = [
-    {
-      id: uuid(),
-      content: {
-        emoji: "🔥",
-        text: "[OWW] - Learn SVGator for Create OWW Animation Part 1",
-        date: "MAR 26",
-      },
-    },
-    {
-      id: uuid(),
-      content: {
-        emoji: "🎮",
-        text: "[Metaco] - Benchmark Mobile Legend on Earning Diamond",
-        date: "MAR 25",
-      },
-    },
-  ];
-
-const ColumnsList = {
-  [uuid()]: {
-    name: "Next Up",
-    items: itemsFromBackend,
-  },
-  [uuid()]: {
-    name: "In Progress",
-    items: itemsFromBackend2,
-  },
-  [uuid()]: {
-    name: "Complete",
-    items: itemsFromBackend3,
-  },
-};
-const onDragEnd = (result, columns, setColumns) => {
-  if (!result.destination) return;
-  const { source, destination } = result;
-
-  if (source.droppableId !== destination.droppableId) {
-    const sourceColumn = columns[source.droppableId];
-    const destColumn = columns[destination.droppableId];
-    const sourceItems = [...sourceColumn.items];
-    const destItems = [...destColumn.items];
-    const [removed] = sourceItems.splice(source.index, 1);
-    destItems.splice(destination.index, 0, removed);
-    setColumns({
-      ...columns,
-      [source.droppableId]: {
-        ...sourceColumn,
-        items: sourceItems,
-      },
-      [destination.droppableId]: {
-        ...destColumn,
-        items: destItems,
-      },
-    });
-  } else {
-    const column = columns[source.droppableId];
-    const copiedItems = [...column.items];
-    const [removed] = copiedItems.splice(source.index, 1);
-    copiedItems.splice(destination.index, 0, removed);
-    setColumns({
-      ...columns,
-      [source.droppableId]: {
-        ...column,
-        items: copiedItems,
-      },
-    });
-  }
-};
 const Task = () => {
+  const ColumnsList = useSelector(SelectColumnList)
+  console.log(ColumnsList)
+  const dispatch = useDispatch();
   const [columns, setColumns] = useState(ColumnsList);
-  const onDragEnd = (result, columns, setColumns) => {
-    if (!result.destination) return;
-    const { source, destination } = result;
-
-    if (source.droppableId !== destination.droppableId) {
-      const sourceColumn = columns[source.droppableId];
-      const destColumn = columns[destination.droppableId];
-      const sourceItems = [...sourceColumn.items];
-      const destItems = [...destColumn.items];
-      const [removed] = sourceItems.splice(source.index, 1);
-      destItems.splice(destination.index, 0, removed);
-      setColumns({
-        ...columns,
-        [source.droppableId]: {
-          ...sourceColumn,
-          items: sourceItems,
-        },
-        [destination.droppableId]: {
-          ...destColumn,
-          items: destItems,
-        },
-      });
-    } else {
-      const column = columns[source.droppableId];
-      const copiedItems = [...column.items];
-      const [removed] = copiedItems.splice(source.index, 1);
-      copiedItems.splice(destination.index, 0, removed);
-      setColumns({
-        ...columns,
-        [source.droppableId]: {
-          ...column,
-          items: copiedItems,
-        },
-      });
-    }
-  };
+ 
   return (
     <div className="Task">
-      {console.log(columns)}
+      {/* {console.log(columns)} */}
       <div className="Task-head">
         <div className="Task-head-taskText">
           <span className="Task-head-taskText-text">✔️ Daily Task</span>
@@ -185,7 +41,7 @@ const Task = () => {
       </div>
       <div className="Task-Drageble">
         <DragDropContext
-          onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+          onDragEnd={(result) => onDragEnd(result, columns, setColumns, dispatch, updateColumnList)}
         >
           {Object.entries(columns).map(([columnId, column], index) => {
             return (
