@@ -55,7 +55,7 @@
                 background-color: #fc3738;
             }
             img{
-                
+                object-fit: cover;
                 cursor: pointer;
                 width: 35px;
                 height: 35px;
@@ -76,6 +76,7 @@
                 margin: 20px 0px;
             }
             &-chatbox{
+                overflow-y: overlay;
                 display: flex;
                 flex-direction: column;
                 width: 100%;
@@ -95,12 +96,14 @@
                         align-items: center;
                         &-me{
                             flex-direction: row-reverse;
+                            margin-right: 10px;
                         }
                         img{
                             width: 35px;
                             height: 35px;
                             object-fit: cover;
                             border-radius: 50%;
+                            
                         }
                         &-text{
                             font-weight: 500;

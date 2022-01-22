@@ -70,10 +70,11 @@
     }
 
     &-Drageble {
-        // height: 70vh;
-        max-height: 75vh;
+        height: 570px;
+    //    width: inherit;
         overflow-y: overlay;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-evenly;
         &-column {
             display: flex;
@@ -105,7 +106,10 @@
                 &-inn {
                     padding: 4px;
                     width: 250px;
-                    min-height: 500px;
+                    @media screen and (max-width: 1400px) {
+                        width: 200px;
+                      }
+                    // min-height: 500px;
                     background-color: white !important;
 
                     &-item {
@@ -159,4 +163,6 @@
             }
         }
     }
+
+  
 }

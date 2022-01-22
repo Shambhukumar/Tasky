@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./task.scss";
 import Search from "../../Assets/Svg/Search.svg";
 import Notification from "../../Assets/Svg/Notification.svg";
-import Pic1 from "../../Assets/Images/Pic1.jpg";
+// import Pic1 from "../../Assets/Images/Pic1.jpg";
+import {SelectUser} from "../LoggedInUserSplice";
 import {updateColumnList, SelectColumnList} from "./taskSlice";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,6 +12,7 @@ import {onDragEnd} from "./taskFunction";
 
 const Task = () => {
   const ColumnsList = useSelector(SelectColumnList)
+  const Currentuser = useSelector(SelectUser)
   console.log(ColumnsList)
   const dispatch = useDispatch();
   const [columns, setColumns] = useState(ColumnsList);
@@ -29,7 +31,7 @@ const Task = () => {
               <img src={Notification} alt="notification icon" />
             </span>
             <span className="Task-head-taskText-icons-pic">
-              <img src={Pic1} alt="person img" />
+              <img src={Currentuser.image} alt="person img" />
             </span>
           </div>
         </div>

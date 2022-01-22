@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import "./chat.scss";
-import { messages, users } from "./data";
-import MicSvg from "../../Assets/Svg/Mic.svg"
+import MicSvg from "../../Assets/Svg/Mic.svg";
+import {UpdateMessages, SelectMessages, SelectUsers} from "./ChatSlice";
+import {SelectUser} from "../LoggedInUserSplice"
+import { useSelector, useDispatch } from "react-redux";
 const Chat = () => {
+    const msg = useSelector(SelectMessages);
+    const users = useSelector(SelectUsers);
+    const CurrentUser = useSelector(SelectUser)
+    console.log(CurrentUser)
+    const dispatch = useDispatch()
+    const [message, setMessage] = useState(msg)
+    const [currmsg, setCurrMsg] = useState("")
+
+    const  sendMessage = (e) =>{
+        if(e.keyCode === 13 && currmsg.length){
+           dispatch(UpdateMessages([...message, {
+            name: CurrentUser.UserName,
+            image: CurrentUser.image,
+            text: currmsg,
+            time: "10:00 AM"
+        },])) 
+            setMessage((prevMessage) => [...prevMessage, {
+                name: CurrentUser.UserName,
+                image: CurrentUser.image,
+                text: currmsg,
+                time: "10:00 AM"
+            },])
+            setCurrMsg("")
+        }
+    }
   return (
     <div className="chat">
       <div className="chat-head">
@@ -23,18 +50,18 @@ const Chat = () => {
         <div className="chat-groupchat-container">
           <span className="chat-groupchat-container-heading">Group Chat</span>
           <ul className="chat-groupchat-container-chatbox">
-            {messages.map((e, el) => {
+            {message.map((e, el) => {
               return (
                 <li
                   className={
-                    e.name === "Jake"
+                    e.name === CurrentUser.UserName
                       ? "chat-groupchat-container-chatbox-item chat-groupchat-container-chatbox-item-me"
                       : "chat-groupchat-container-chatbox-item"
                   }
                 >
                   <div
                     className={
-                      e.name === "Jake"
+                      e.name === CurrentUser.UserName
                         ? "chat-groupchat-container-chatbox-item-message chat-groupchat-container-chatbox-item-message-me"
                         : "chat-groupchat-container-chatbox-item-message"
                     }
@@ -42,7 +69,7 @@ const Chat = () => {
                     <img src={e.image} alt="user img" />{" "}
                     <span
                       className={
-                        e.name === "Jake"
+                        e.name === CurrentUser.UserName
                           ? "chat-groupchat-container-chatbox-item-message-text chat-groupchat-container-chatbox-item-message-text-me"
                           : "chat-groupchat-container-chatbox-item-message-text"
                       }
@@ -61,7 +88,7 @@ const Chat = () => {
       </div>
       <div className="chat-inputbox">
         <div className="chat-inputbox-container">
-          <input type="text" placeholder="Write here..." />
+          <input type="text" value={currmsg} placeholder="Write here..." onChange={(e)=> setCurrMsg(e.target.value)} onKeyDown={sendMessage}/>
         </div>
         <img  src={MicSvg} alt="mic svg"/>
         <span className="chat-inputbox-dots">
